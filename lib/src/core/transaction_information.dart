@@ -8,7 +8,8 @@ class TransactionInformation {
             : const BlockNum.pending(),
         from = EthereumAddress.fromHex(map['from'] as String),
         gas = int.parse(map['gas'] as String),
-        gasPrice = EtherAmount.inWei(BigInt.parse(map['gasPrice'] as String)),
+        gasPrice =
+            EtherAmount.inWei(BigInt.parse((map['gasPrice'] ?? '0') as String)),
         hash = map['hash'] as String,
         input = hexToBytes(map['input'] as String),
         nonce = int.parse(map['nonce'] as String),
