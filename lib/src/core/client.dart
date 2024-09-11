@@ -191,6 +191,16 @@ class Web3Client {
     ).then((json) => BlockInformation.fromJson(json));
   }
 
+  Future<BlockInformationWithTransactions> getBlockByNumberWithTransactions(
+    BlockNum blockNum,
+  ) async {
+    final map = await makeRPCCall<Map<String, dynamic>>(
+      'eth_getBlockByNumber',
+      [blockNum.toBlockParam(), true],
+    );
+    return BlockInformationWithTransactions.fromMap(map);
+  }
+
   /// Gets the balance of the account with the specified address.
   ///
   /// This function allows specifying a custom block mined in the past to get
